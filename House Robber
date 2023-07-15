@@ -77,7 +77,7 @@ class Solution {
             prevPast= past;
             past= curr;
         }
-        return curr;
+        return past;
     }
 }
 
