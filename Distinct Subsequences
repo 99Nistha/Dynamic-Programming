@@ -125,3 +125,29 @@ class Solution {
         return dp[len2];
     }
 }
+
+1d with no extra variable
+class Solution {
+    public int numDistinct(String s, String t) {
+        int len1= s.length();
+        int len2= t.length();
+        int[] dp= new int[len2+1];
+        return disctinctSubsequence(len1, len2, s, t, dp);
+    }
+    public int disctinctSubsequence(int len1, int len2, String s, String t, int[] dp){
+        dp[0]= 1;
+        for(int index1=1;index1<= len1; index1++){
+            for(int index2=len2; index2>=1; index2--){
+                //match
+                if(s.charAt(index1-1)== t.charAt(index2-1)){
+                    int pickFromS= dp[index2-1];
+                    int notPickFromS= dp[index2];
+                    dp[index2]= pickFromS+ notPickFromS;
+                }else{
+                    dp[index2]= dp[index2];
+                }
+            }
+        }
+        return dp[len2];
+    }
+}
