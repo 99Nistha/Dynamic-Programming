@@ -39,3 +39,19 @@ class Solution {
         return lastBuy;
     }
 }
+
+no memeory:
+class Solution {
+    public int maxProfit(int[] prices, int fee) {
+        int lastBuy=0;
+        int lastSell=0;
+        for(int index=prices.length-1; index>=0; index--){
+            //buy
+            lastBuy= Math.max(-prices[index]+ lastSell, lastBuy); 
+
+            //sell
+            lastSell= Math.max(prices[index]- fee + lastBuy, lastSell); 
+        }
+        return lastBuy;
+    }
+}
